@@ -1,0 +1,38 @@
+{
+    "name": "jbpapp/pdf-to-text",
+    "description": "Extract text from a pdf file using pdf-to-text binary.",
+    "keywords": [
+        "pdf",
+        "pdf-to-text"
+    ],
+    "homepage": "https://github.com/jbpapp/pdf-to-text",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Janos Papp",
+            "email": "janos.papp2@gmail.com",
+            "homepage": "https://twitter.com/jbpapp",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : "^5.6",
+        "symfony/process": "^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "JBPapp\\PdfToText\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JBPapp\\PdfToText\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
+}
