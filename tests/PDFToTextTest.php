@@ -9,6 +9,7 @@ use JBPapp\PdfToText\Pdf;
 class PdfToTextTest extends \PHPUnit_Framework_TestCase
 {
     protected $dummyPdf = __DIR__.'/testfiles/dummy.pdf';
+
     protected $dummyPdfText = 'This is a dummy PDF';
 
     /** @test */
@@ -24,6 +25,13 @@ class PdfToTextTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function it_provides_a_static_method_to_extract_text()
     {
+        $this->assertSame($this->dummyPdfText, Pdf::getText($this->dummyPdf));
+    }
+
+    /** @test */
+    public function it_extracts_text_froom_a_pdf_with_spaces_in_the_name()
+    {
+        $this->dummyPdf = __DIR__.'/testfiles/pdf with spaces.pdf';
         $this->assertSame($this->dummyPdfText, Pdf::getText($this->dummyPdf));
     }
 
