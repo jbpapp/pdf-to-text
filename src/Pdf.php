@@ -2,9 +2,9 @@
 
 namespace JBPapp\PdfToText;
 
-use JBPapp\PdfToText\Exceptions\CouldNotExtractText;
-use JBPapp\PdfToText\Exceptions\PdfNotFound;
 use Symfony\Component\Process\Process;
+use JBPapp\PdfToText\Exceptions\PdfNotFound;
+use JBPapp\PdfToText\Exceptions\CouldNotExtractText;
 
 class Pdf
 {
@@ -12,9 +12,22 @@ class Pdf
 
     protected $binPath;
 
+    protected $binPaths = [
+        '/usr/bin/pdftotext',
+        '/usr/local/bin/pdftotext',
+    ];
+
     public function __construct($binPath = null)
     {
-        $this->binPath = $binPath ?: '/usr/bin/pdftotext';
+        if ($binPath) {
+            $this->binPath = $binPath;
+        } else {
+            foreach ($this->binPaths as $binPath) {
+                if (file_exists($binPath)) {
+                    $this->binPath = $binPath;
+                }
+            }
+        }
     }
 
     public function setPdf($pdf)
